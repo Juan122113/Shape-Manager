@@ -1,18 +1,3 @@
-const resultCard = document.getElementById("result-card")!;
-const resultText = document.getElementById("result-text")!;
-const circleGroup = document.getElementById("circle-props") as HTMLElement;
-const radiusInput = document.getElementById("radius") as HTMLInputElement;
-
-resultCard.classList.add("visible");
-circleGroup.classList.remove("hidden");
-resultText.textContent = "Enter a radius to see the area";
-
-radiusInput.addEventListener("input", () => {
-  const radius = Number(radiusInput.value) || 0;
-  const area = Math.PI * radius ** 2;
-  resultText.textContent = `Area of Circle: ${area.toFixed(2)}`;
-});
-
 interface Shape {
   type: string;
 }
@@ -37,9 +22,58 @@ interface Triangle extends Shape {
 type Shapes = Circle | Triangle | Rectangle;
 
 const getElement = (id: string): HTMLElement => {
-  const elem = document.getElementById(id);
-  if (elem!) {
-     throw new Error(`Element not found: ${id}`);
-    }; 
-  return elem;
+  const el = document.getElementById(id);
+  if (!el) throw new Error(`Element not found: ${id}`);
+  return el;
+};
+
+let shapeTypeSelect: HTMLSelectElement;
+
+let propertyGroups: {
+  circle: HTMLElement;
+  rectangle: HTMLElement;
+  triangle: HTMLElement;
+};
+
+let propertyInputs: {
+  radius: HTMLInputElement;
+  width: HTMLInputElement;
+  height: HTMLInputElement;
+  base: HTMLInputElement;
+  triangleHeight: HTMLInputElement;
+};
+
+let resultText: HTMLElement;
+let resultCard: HTMLElement;
+
+const chooseShape = (shapeType: string) => {
+  Object.entries(propertyGroups).forEach(([name, group]) => {
+    if (name === shapeType) {
+      group.classList.remove("hidden");
+    } else {
+      group.classList.add("hidden");
+    }
+  });
+};
+
+const toggleResultCard = (show: boolean) => {
+  if (show) {
+    resultCard.classList.add("visible");
+  } else {
+    resultCard.classList.remove("visible");
+  }
+};
+
+const calculateArea = (shape: Shapes): string => {
+  switch (shape) {
+    case Circle: return (Math.PI * shape.radius ** 2).toString();
+    case Rectangle: return "";
+    case Triangle: return "";
+    default:
+    const _doesNotExist: never;
+    return _doesNotExist;
+  }
+  // if (shape == "circle") {
+  //   return (Math.PI * shape.radius ** 2).toString();
+  // }
 };
