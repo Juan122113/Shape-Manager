@@ -65,15 +65,32 @@ const toggleResultCard = (show: boolean) => {
 };
 
 const calculateArea = (shape: Shapes): string => {
-  switch (shape) {
-    case Circle: return (Math.PI * shape.radius ** 2).toString();
-    case Rectangle: return "";
-    case Triangle: return "";
+  switch (shape.type) {
+    case "circle":
+      return `Area of Circle: ${(Math.PI * shape.radius ** 2).toFixed(2)}`;
+    case "rectangle":
+      return `Area of Rectangle: ${shape.width * shape.height}`;
+    case "triangle":
+      return `Area of Triangle: ${0.5 * shape.base * shape.height}`;
     default:
-    const _doesNotExist: never;
-    return _doesNotExist;
+      const _nonExistent: never = shape;
+      return _nonExistent;
   }
-  // if (shape == "circle") {
-  //   return (Math.PI * shape.radius ** 2).toString();
-  // }
 };
+
+function updateResult() {
+  const shape = shapeTypeSelect.value;
+  let result: string = "";
+  //const shape = {};
+  //switch (shape) {}
+  const propInpRad = parseInt(propertyInputs.radius.toString());
+  if (shape == "circle") {
+    const circle = {
+      type: "circle",
+      radius: propInpRad
+    }
+    result = calculateArea(circle);
+  }
+  //calculateArea(shape);
+  resultText.textContent = result;
+}
