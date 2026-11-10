@@ -79,8 +79,33 @@ const calculateArea = (shape: Shapes): string => {
 };
 
 function clearInputFields() {
-  
+  // const elements = document.querySelectorAll(".input");
+  // console.log(elements);
+  // elements.forEach(e => {
+  //   let str = e.toString;
+  //   console.log(str);
+  //   // str = "";
+  //   return str.replace("input", "");
+  // });
+  return document.querySelectorAll(".input").forEach(
+    // (e): string => { e
+    (e) => { 
+      // e
+      // e = "";
+    // let str: string = e.toString;
+    // let str = e.toString;
+    // console.log(str);
+    // str = "";
+    // return str;
+    // return str.replace("input", "");
+    // return e.replace("input", "");
+    e.value = "";
+    // return e.value = "";
+  });
 }
+// module.exports = { clearInputFields }
+// console.log(clearInputFields());
+clearInputFields();
 
 function updateResult() {
   const shape = shapeTypeSelect.value;
