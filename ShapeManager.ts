@@ -78,19 +78,32 @@ const calculateArea = (shape: Shapes): string => {
   }
 };
 
+function clearInputFields() {
+  
+}
+
 function updateResult() {
   const shape = shapeTypeSelect.value;
   let result: string = "";
-  //const shape = {};
-  //switch (shape) {}
-  const propInpRad = parseInt(propertyInputs.radius.toString());
-  if (shape == "circle") {
-    const circle = {
+
+  if (shape === "circle") {
+    result = calculateArea({
       type: "circle",
-      radius: propInpRad
-    }
-    result = calculateArea(circle);
+      radius: Number(propertyInputs.radius.value),
+    });
+  } else if (shape === "rectangle") {
+    result = calculateArea({
+      type: "rectangle",
+      width: Number(propertyInputs.width.value),
+      height: Number(propertyInputs.height.value),
+    });
+  } else if (shape === "triangle") {
+    result = calculateArea({
+      type: "triangle",
+      base: Number(propertyInputs.base.value),
+      height: Number(propertyInputs.triangleHeight.value),
+    });
   }
-  //calculateArea(shape);
+
   resultText.textContent = result;
 }
