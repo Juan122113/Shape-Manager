@@ -78,19 +78,30 @@ const calculateArea = (shape: Shapes): string => {
   }
 };
 
-// function clearInputFields() {
-const clearInputFields = () => {
-  const elements = document.querySelectorAll(".input");
+function clearInputFields() {
+// const clearInputFields = () => {
+  let elements = document.querySelectorAll(".input");
   console.log("elements", elements);
   elements.forEach(e => {
     console.log("e", e);
     // console.log(e.value);
-    let str:string = e.toString();
-    console.log("str", str);
-    str = "";
-    console.log("", str);
-  //   return str.replace("input", "");
-  return str;
+    // let str:string = e.toString();
+    // console.log("str", str);
+    // str = "";
+    // console.log("", str);
+    // return str.replace("input", "");
+  // return str;
+  // e.className = "";
+  // return e.value = "";
+  // e.value = "";
+  // console.log("e", e);
+  // let eArr = Object.keys(e);
+  // console.log("eArr", eArr);
+  // eArr = [""];
+  // console.log("eArr", eArr);
+  // e[0] = "";
+  // e = "";
+  // e.toString() = "";
   });
   console.log("elements", elements);
   return elements;
@@ -116,7 +127,7 @@ const clearInputFields = () => {
 }
 // module.exports = { clearInputFields }
 // console.log(clearInputFields());
-clearInputFields();
+// clearInputFields();
 
 function updateResult() {
   const shape = shapeTypeSelect.value;
